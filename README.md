@@ -72,9 +72,7 @@ node server.js
 ## 🌐 Deploy
 
 * **Front-end:** [Vercel](https://coleta-link.vercel.app/)
-* **Back-end:** [Render](https://render.com/)
-
-> Os links de produção serão atualizados aqui após o deploy completo.
+* **Back-end:** [Render](https://coletalink.onrender.com)
 
 ---
 
