@@ -1,12 +1,85 @@
-# React + Vite
+# ♻️ ColetaLink
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto desenvolvido para facilitar o descarte consciente de resíduos sólidos, conectando moradores a pontos de coleta e catadores de forma prática, responsiva e geolocalizada. 🌱
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📸 Imagem do projeto
 
-## Expanding the ESLint configuration
+![coletalink banner](./src/assets/logoColetaLink.jpeg)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Funcionalidades
+
+* Cadastro de pontos de coleta (com geolocalização automática via CEP)
+* Visualização dos pontos em mapa com ícones personalizados (Leaflet)
+* Filtro por nome da instituição, cidade, bairro e tipo de resíduo
+* Busca por CEP para centralizar o mapa
+* Estilo moderno: fundo cimento queimado + verde neon
+* Layout responsivo com menu hambúrguer para dispositivos móveis
+
+---
+
+## 💻 Tecnologias utilizadas
+
+| Front-end        | Back-end          | Banco de Dados |
+| ---------------- | ----------------- | -------------- |
+| React + Vite     | Node.js + Express | MongoDB Atlas  |
+| SCSS Modules     | Axios             | Mongoose       |
+| React Router DOM | CORS, dotenv      |                |
+| React Leaflet    |                   |                |
+
+---
+
+## 👨‍💻 Como rodar o projeto localmente
+
+### 1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/coletalink.git
+cd coletalink
+```
+
+### 2. Instale as dependências:
+
+#### Front-end
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+#### Back-end
+
+```bash
+cd backend
+npm install
+node server.js
+```
+
+> 📂 Crie um arquivo `.env` dentro da pasta `backend` com as seguintes variáveis:
+>
+> ```env
+> MONGO_URI=mongodb+srv://usuario:senha@cluster.mongodb.net/coletalink
+> PORT=5000
+> ```
+
+---
+
+## 🌐 Deploy
+
+* **Front-end:** [Vercel](https://vercel.com/)
+* **Back-end:** [Render](https://render.com/)
+
+> Os links de produção serão atualizados aqui após o deploy completo.
+
+---
+
+## 🤝 Contribuições
+
+Projeto criado com fins educativos e ambientais.
+Contribuições são bem-vindas!
+Crie um fork, clone, envie um PR com sugestões ou melhorias.
+
