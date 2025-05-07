@@ -4,9 +4,10 @@ Projeto desenvolvido para facilitar o descarte consciente de resíduos sólidos,
 
 ---
 
-## 📸 Imagem do projeto
+## 📸 Logo do projeto
 
-![logo](./src/assets/logoColetaLink.jpeg)
+![image](https://github.com/user-attachments/assets/028a59d2-1d53-45bd-be56-cca036d03094)
+
 
 ---
 
