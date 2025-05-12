@@ -1,3 +1,13 @@
+# === NODE / BACK-END ===
+node_modules/
+.env
+dist/
+dist-ssr/
+build/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
 # Logs
 logs
 *.log
@@ -7,18 +17,26 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# === FRONT-END / VITE / REACT ===
+.vite/
+.cache/
 *.local
+*.DS_Store
 
-# Editor directories and files
-.vscode/*
+# === IDEs e editores ===
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# === Testes ou arquivos temporários ===
+coverage/
+*.test.js
+*.spec.js
+*.snap
+*.tmp
+*.bak

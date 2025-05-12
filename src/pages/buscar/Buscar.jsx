@@ -28,9 +28,9 @@ export default function Buscar() {
   const handleFiltrar = () => {
     const filtrados = pontos.filter((ponto) => {
       const nomeMatch = ponto.nome?.toLowerCase().includes(filtroNome.toLowerCase());
-      const cidadeMatch = ponto.endereco?.toLowerCase().includes(filtroCidade.toLowerCase());
-      const bairroMatch = ponto.endereco?.toLowerCase().includes(filtroBairro.toLowerCase());
-      const tipoMatch = !filtroTipo || ponto.tipoResíduo?.toLowerCase() === filtroTipo.toLowerCase();
+      const cidadeMatch = ponto.cidade?.toLowerCase().includes(filtroCidade.toLowerCase());
+      const bairroMatch = ponto.bairro?.toLowerCase().includes(filtroBairro.toLowerCase());
+      const tipoMatch = !filtroTipo || ponto.tipoResiduo?.toLowerCase() === filtroTipo.toLowerCase();
 
       return nomeMatch && cidadeMatch && bairroMatch && tipoMatch;
     });
@@ -86,13 +86,13 @@ export default function Buscar() {
           resultadoFiltrado.map((ponto, index) => (
             <div key={index} className={styles.card}>
               <h2>{ponto.nome}</h2>
-              <p><strong>Endereço:</strong> {ponto.endereco}</p>
+              <p><strong>Endereço:</strong> {`${ponto.logradouro}, ${ponto.numero} - ${ponto.bairro}, ${ponto.cidade} - ${ponto.uf}`}</p>
               <p><strong>Horário:</strong> {ponto.horario}</p>
-              {ponto.tipoResíduo && (
-                <p><strong>Tipo:</strong> {ponto.tipoResíduo}</p>
+              {ponto.tipoResiduo && (
+                <p><strong>Tipo:</strong> {ponto.tipoResiduo}</p>
               )}
               <Link
-                to={`/mapa?lat=${ponto.latitude}&lng=${ponto.longitude}`}
+                to={`/mapa?cep=${ponto.cep}`}
                 className={styles.botaoMapa}
               >
                 Ver no mapa

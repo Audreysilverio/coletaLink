@@ -13,7 +13,7 @@ export default function Doar() {
     bairro: '',
     cidade: '',
     uf: '',
-    tipoResiduos: '',
+    tipoResiduo: '',
     horario: '',
     site: '',
   });
@@ -51,7 +51,7 @@ export default function Doar() {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/doar', form);
+      await axios.post('http://localhost:5000/pontos', form);
       setMensagem('Solicitação enviada com sucesso!');
       setForm({
         nome: '',
@@ -63,7 +63,7 @@ export default function Doar() {
         bairro: '',
         cidade: '',
         uf: '',
-        tipoResiduos: '',
+        tipoResiduo: '',
         horario: '',
         site: '',
       });
@@ -138,7 +138,7 @@ export default function Doar() {
 
         <label>
           Tipo de resíduo*
-          <select name="tipoResiduos" value={form.tipoResiduos} onChange={handleChange} required>
+          <select name="tipoResiduo" value={form.tipoResiduo} onChange={handleChange} required>
             <option value="">Selecione o tipo</option>
             <option value="papel">Papel</option>
             <option value="plástico">Plástico</option>

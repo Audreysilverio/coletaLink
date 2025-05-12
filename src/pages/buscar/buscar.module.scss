@@ -1,99 +1,124 @@
+:root {
+  --bg-light: #f7f9f9;
+  --text-dark: #222222;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --green-neon: #39ff14;
+  --green-hover: #2ee60f;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+}
+
 .buscarLocais {
-    padding: 2rem;
-    background-color: var(--dark-bg);
-    color: var(--text-light);
-    min-height: 100vh;
-    text-align: center;
-  }
-  
-  .buscarLocais h1 {
-    font-size: 2rem;
-    color: var(--green-neon);
-    margin-bottom: 2rem;
-  }
-  
-  .filtros {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 2rem;
-  
-    input {
-      padding: 0.5rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      width: 200px;
-      font-size: 1rem;
-    }
-  
-    button {
-      padding: 0.5rem 1.2rem;
-      background-color: var(--green-neon);
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #000;
-      transition: all 0.2s;
-    }
-  
-    button:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-  }
-  
-  .resultados {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .card {
-    background-color: #2b2b2b;
-    color: var(--text-light);
-    border-radius: 12px;
-    box-shadow: 0 0 8px rgba(0, 255, 100, 0.4);
-    padding: 1rem 1.5rem;
-    max-width: 600px;
-    width: 100%;
-    text-align: left;
-  
-    h2 {
-      color: var(--green-neon);
-      margin-bottom: 0.5rem;
-    }
-  
-    p {
-      margin: 0.3rem 0;
-    }
-  }
-  
-  .nenhumResultado {
-    font-size: 1.2rem;
-    color: var(--green-neon);
-    border: 1px dashed var(--green-neon);
-    padding: 1rem;
+  padding: 2rem;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+  text-align: center;
+}
+
+.buscarLocais h1 {
+  font-size: 2.5rem;
+  color: var(--green-neon);
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+
+  input,
+  select {
+    padding: 0.7rem;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    background-color: #ffffff;
+    color: var(--text-dark);
+    width: 220px;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px var(--shadow-light);
   }
-  
-  .botaoMapa {
-    margin-top: 0.5rem;
-    display: inline-block;
+
+  button {
+    padding: 0.7rem 1.5rem;
     background-color: var(--green-neon);
-    color: #000;
-    padding: 0.4rem 1rem;
+    border: none;
     border-radius: 8px;
     font-weight: bold;
-    text-decoration: none;
-    transition: 0.2s;
+    cursor: pointer;
+    color: #000;
+    transition: all 0.2s;
   }
-  
-  .botaoMapa:hover {
-    opacity: 0.9;
+
+  button:hover {
+    background-color: var(--green-hover);
     transform: scale(1.05);
   }
-  
+}
+
+.resultados {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-dark);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  padding: 1.5rem;
+  border: 1px solid var(--card-border);
+  max-width: 650px;
+  width: 100%;
+  text-align: left;
+  transition: transform 0.2s;
+
+  h2 {
+    color: var(--green-neon);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.nenhumResultado {
+  font-size: 1.2rem;
+  color: var(--green-neon);
+  border: 1px dashed var(--green-neon);
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.botaoMapa {
+  margin-top: 0.7rem;
+  display: inline-block;
+  background-color: var(--green-neon);
+  color: #000;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.botaoMapa:hover {
+  background-color: var(--green-hover);
+  transform: scale(1.05);
+}

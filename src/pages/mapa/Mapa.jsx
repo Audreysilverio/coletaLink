@@ -9,9 +9,8 @@ import {
 import "leaflet/dist/leaflet.css";
 import styles from "./mapa.module.scss";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-
 import L from "leaflet";
+import { useLocation } from "react-router-dom";
 import iconeVerde from "../../assets/iconeVerde.png";
 
 const customIcon = new L.Icon({
@@ -23,29 +22,112 @@ const customIcon = new L.Icon({
 
 function MoverMapa({ position }) {
   const map = useMap();
-  if (position) map.setView(position, 16);
+  if (position) map.setView(position, 14);
   return null;
 }
 
 export default function Mapa() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
-  const queryLat = query.get("lat");
-  const queryLng = query.get("lng");
+  const cepQuery = query.get("cep");
 
   const [cep, setCep] = useState("");
-  const [mapPosition, setMapPosition] = useState(
-    queryLat && queryLng
-      ? [parseFloat(queryLat), parseFloat(queryLng)]
-      : [-23.55052, -46.633308] // posição padrão
-  );
+  const [mapPosition, setMapPosition] = useState([-23.55052, -46.633308]); // São Paulo padrão
   const [pontos, setPontos] = useState([]);
+  const [marcadores, setMarcadores] = useState([]);
 
+  // Centraliza se receber CEP por URL
+  useEffect(() => {
+    async function centralizarPorCep(cep) {
+      try {
+        const viaCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await viaCep.json();
+
+        if (data.erro) {
+          console.warn("CEP inválido na URL:", cep);
+          return;
+        }
+
+        const endereco = `${data.logradouro}, ${data.bairro}, ${data.localidade}, ${data.uf}, Brasil`;
+        const geoRes = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`,
+          {
+            headers: {
+              "User-Agent": "ColetaLinkApp/1.0 (contato@coletalink.com.br)",
+            },
+          }
+        );
+        const geoData = await geoRes.json();
+
+        if (geoData.length > 0) {
+          const { lat, lon } = geoData[0];
+          setMapPosition([parseFloat(lat), parseFloat(lon)]);
+        }
+      } catch (err) {
+        console.error("Erro ao centralizar pelo CEP da URL:", err);
+      }
+    }
+
+    if (cepQuery) {
+      centralizarPorCep(cepQuery);
+    }
+  }, [cepQuery]);
+
+  // Busca todos os pontos e converte endereço em coordenadas
   useEffect(() => {
     async function buscarPontos() {
       try {
         const res = await axios.get("http://localhost:5000/pontos");
         setPontos(res.data);
+
+        let localizados = 0;
+        let naoLocalizados = 0;
+
+        const marcadoresComCoordenadas = await Promise.all(
+          res.data.map(async (ponto) => {
+            if (
+              !ponto.logradouro ||
+              !ponto.numero ||
+              !ponto.bairro ||
+              !ponto.cidade ||
+              !ponto.uf
+            ) {
+              console.warn("❌ Dados incompletos para geolocalização:", ponto);
+              naoLocalizados++;
+              return null;
+            }
+
+            const endereco = `${ponto.logradouro}, ${ponto.numero}, ${ponto.bairro}, ${ponto.cidade}, ${ponto.uf}, Brasil`;
+            const geoRes = await fetch(
+              `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`,
+              {
+                headers: {
+                  "User-Agent": "ColetaLinkApp/1.0 (contato@coletalink.com.br)",
+                },
+              }
+            );
+            const geoData = await geoRes.json();
+
+            if (geoData.length > 0) {
+              localizados++;
+              return {
+                ...ponto,
+                lat: parseFloat(geoData[0].lat),
+                lon: parseFloat(geoData[0].lon),
+              };
+            } else {
+              naoLocalizados++;
+              console.warn(`❌ Endereço não localizado: ${endereco}`);
+              return null;
+            }
+          })
+        );
+
+        console.info(`✅ Pontos localizados: ${localizados}`);
+        console.info(`⚠️ Pontos não localizados: ${naoLocalizados}`);
+
+        const filtrados = marcadoresComCoordenadas.filter(Boolean);
+        setMarcadores(filtrados);
       } catch (err) {
         console.error("Erro ao buscar pontos:", err);
       }
@@ -54,6 +136,7 @@ export default function Mapa() {
     buscarPontos();
   }, []);
 
+  // Busca por CEP (manual)
   const handleBuscarCep = async () => {
     if (!cep || cep.length !== 8) {
       alert("Digite um CEP válido com 8 dígitos.");
@@ -69,9 +152,14 @@ export default function Mapa() {
         return;
       }
 
-      const endereco = `${data.logradouro}, ${data.bairro}, ${data.localidade}, ${data.uf}`;
+      const endereco = `${data.logradouro}, ${data.bairro}, ${data.localidade}, ${data.uf}, Brasil`;
       const geoRes = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`,
+        {
+          headers: {
+            "User-Agent": "ColetaLinkApp/1.0 (contato@coletalink.com.br)",
+          },
+        }
       );
       const geoData = await geoRes.json();
 
@@ -114,27 +202,19 @@ export default function Mapa() {
 
         <MoverMapa position={mapPosition} />
 
-        {/* Pontos do banco */}
-        {pontos.map((ponto, index) => (
+        {marcadores.map((ponto, index) => (
           <Marker
             key={index}
-            position={[ponto.latitude, ponto.longitude]}
+            position={[ponto.lat, ponto.lon]}
             icon={customIcon}
           >
             <Popup>
               <strong>{ponto.nome}</strong><br />
-              {ponto.endereco}<br />
+              {`${ponto.logradouro}, ${ponto.numero} - ${ponto.bairro}, ${ponto.cidade} - ${ponto.uf}`}<br />
               {ponto.horario}
             </Popup>
           </Marker>
         ))}
-
-        {/* Marcador do CEP buscado ou da query string */}
-        {(cep || (queryLat && queryLng)) && (
-          <Marker position={mapPosition} icon={customIcon}>
-            <Popup>Local selecionado</Popup>
-          </Marker>
-        )}
       </MapContainer>
     </div>
   );
