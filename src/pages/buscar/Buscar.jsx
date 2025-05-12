@@ -14,7 +14,7 @@ export default function Buscar() {
   useEffect(() => {
     async function buscarPontos() {
       try {
-        const res = await axios.get("http://localhost:5000/pontos");
+        const res = await axios.get("https://coletalink.onrender.com/pontos");
         setPontos(res.data);
         setResultadoFiltrado(res.data);
       } catch (error) {

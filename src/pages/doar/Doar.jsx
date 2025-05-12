@@ -49,9 +49,10 @@ export default function Doar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Formulário enviado:', form);
 
     try {
-      await axios.post('http://localhost:5000/pontos', form);
+      await axios.post('https://coletalink.onrender.com/pontos', form);
       setMensagem('Solicitação enviada com sucesso!');
       setForm({
         nome: '',
