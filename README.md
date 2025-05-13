@@ -2,7 +2,7 @@
 
 **ColetaLink** é uma plataforma digital criada para facilitar o descarte consciente de resíduos sólidos, conectando moradores a pontos de coleta e catadores de forma prática, geolocalizada e responsiva.
 
-> 🌱 Projeto Integrador 1 • Eixo Computação - Univesp 2025  
+> 🌱 Projeto Integrador • Eixo Computação - Univesp 2025;  
 > 💡 Foco em sustentabilidade, impacto social e tecnologia acessível.
 
 ---
