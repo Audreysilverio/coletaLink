@@ -32,30 +32,21 @@ export default function Mapa() {
   const cepQuery = query.get("cep");
 
   const [cep, setCep] = useState("");
-  const [mapPosition, setMapPosition] = useState([-23.55052, -46.633308]); // São Paulo padrão
-  const [pontos, setPontos] = useState([]);
+  const [mapPosition, setMapPosition] = useState([-23.55052, -46.633308]); // São Paulo
   const [marcadores, setMarcadores] = useState([]);
 
-  // Centraliza se receber CEP por URL
+  
   useEffect(() => {
     async function centralizarPorCep(cep) {
       try {
         const viaCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         const data = await viaCep.json();
 
-        if (data.erro) {
-          console.warn("CEP inválido na URL:", cep);
-          return;
-        }
+        if (data.erro) return;
 
         const endereco = `${data.logradouro}, ${data.bairro}, ${data.localidade}, ${data.uf}, Brasil`;
         const geoRes = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`,
-          {
-            headers: {
-              "User-Agent": "ColetaLinkApp/1.0 (contato@coletalink.com.br)",
-            },
-          }
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`
         );
         const geoData = await geoRes.json();
 
@@ -73,61 +64,18 @@ export default function Mapa() {
     }
   }, [cepQuery]);
 
-  // Busca todos os pontos e converte endereço em coordenadas
+  
   useEffect(() => {
     async function buscarPontos() {
       try {
         const res = await axios.get("https://coletalink-api.onrender.com/pontos");
-        setPontos(res.data);
 
-        let localizados = 0;
-        let naoLocalizados = 0;
+        const pontosComLatLon = res.data.filter((p) => p.lat && p.lon);
 
-        const marcadoresComCoordenadas = await Promise.all(
-          res.data.map(async (ponto) => {
-            if (
-              !ponto.logradouro ||
-              !ponto.numero ||
-              !ponto.bairro ||
-              !ponto.cidade ||
-              !ponto.uf
-            ) {
-              console.warn("❌ Dados incompletos para geolocalização:", ponto);
-              naoLocalizados++;
-              return null;
-            }
+        console.log(`✅ Pontos localizados: ${pontosComLatLon.length}`);
+        console.log(`⚠️ Pontos ignorados (sem coordenadas): ${res.data.length - pontosComLatLon.length}`);
 
-            const endereco = `${ponto.logradouro}, ${ponto.numero}, ${ponto.bairro}, ${ponto.cidade}, ${ponto.uf}, Brasil`;
-            const geoRes = await fetch(
-              `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`,
-              {
-                headers: {
-                  "User-Agent": "ColetaLinkApp/1.0 (contato@coletalink.com.br)",
-                },
-              }
-            );
-            const geoData = await geoRes.json();
-
-            if (geoData.length > 0) {
-              localizados++;
-              return {
-                ...ponto,
-                lat: parseFloat(geoData[0].lat),
-                lon: parseFloat(geoData[0].lon),
-              };
-            } else {
-              naoLocalizados++;
-              console.warn(`❌ Endereço não localizado: ${endereco}`);
-              return null;
-            }
-          })
-        );
-
-        console.info(`✅ Pontos localizados: ${localizados}`);
-        console.info(`⚠️ Pontos não localizados: ${naoLocalizados}`);
-
-        const filtrados = marcadoresComCoordenadas.filter(Boolean);
-        setMarcadores(filtrados);
+        setMarcadores(pontosComLatLon);
       } catch (err) {
         console.error("Erro ao buscar pontos:", err);
       }
@@ -136,7 +84,7 @@ export default function Mapa() {
     buscarPontos();
   }, []);
 
-  // Busca por CEP (manual)
+  
   const handleBuscarCep = async () => {
     if (!cep || cep.length !== 8) {
       alert("Digite um CEP válido com 8 dígitos.");
@@ -154,12 +102,7 @@ export default function Mapa() {
 
       const endereco = `${data.logradouro}, ${data.bairro}, ${data.localidade}, ${data.uf}, Brasil`;
       const geoRes = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`,
-        {
-          headers: {
-            "User-Agent": "ColetaLinkApp/1.0 (contato@coletalink.com.br)",
-          },
-        }
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`
       );
       const geoData = await geoRes.json();
 

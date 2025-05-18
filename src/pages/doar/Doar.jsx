@@ -52,7 +52,7 @@ export default function Doar() {
     console.log('Formulário enviado:', form);
 
     try {
-      await axios.post('https://coletalink-api.onrender.com/pontos', form);
+      await axios.post("https://coletalink-api.onrender.com", form);
       setMensagem('Solicitação enviada com sucesso!');
       setForm({
         nome: '',

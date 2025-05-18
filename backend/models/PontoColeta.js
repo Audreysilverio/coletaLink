@@ -12,7 +12,9 @@ const pontoColetaSchema = new mongoose.Schema({
   uf: { type: String, required: true },
   tipoResiduos: { type: String, required: true },
   horario: { type: String, required: true },
-  site: { type: String } // opcional
+  site: { type: String },
+  lat: { type: Number },
+  lon: { type: Number },
 });
 
 const PontoColeta = mongoose.model('PontoColeta', pontoColetaSchema);

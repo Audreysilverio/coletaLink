@@ -10,15 +10,19 @@ export default function Buscar() {
   const [filtroBairro, setFiltroBairro] = useState("");
   const [filtroTipo, setFiltroTipo] = useState("");
   const [resultadoFiltrado, setResultadoFiltrado] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function buscarPontos() {
       try {
+        setLoading(true);
         const res = await axios.get("https://coletalink-api.onrender.com/pontos");
         setPontos(res.data);
         setResultadoFiltrado(res.data);
       } catch (error) {
         console.error("Erro ao buscar pontos:", error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -80,7 +84,9 @@ export default function Buscar() {
       </div>
 
       <div className={styles.resultados}>
-        {resultadoFiltrado.length === 0 ? (
+        {loading ? (
+          <p className={styles.loading}>Carregando pontos de coleta...</p>
+        ) : resultadoFiltrado.length === 0 ? (
           <p className={styles.nenhumResultado}>Nenhum local encontrado.</p>
         ) : (
           resultadoFiltrado.map((ponto, index) => (

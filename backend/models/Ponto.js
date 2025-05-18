@@ -7,16 +7,14 @@ const PontoSchema = new mongoose.Schema({
   tipoResiduo: { type: String, required: true },
   horario: { type: String, required: true },
   site: { type: String }, // opcional
-
   cep: { type: String, required: true },
   logradouro: { type: String, required: true },
   numero: { type: String, required: true },
   bairro: { type: String, required: true },
   cidade: { type: String, required: true },
   uf: { type: String, required: true },
-
-  latitude: { type: Number },
-  longitude: { type: Number },
+  lat: { type: Number },
+  lon: { type: Number },
 });
 
 const Ponto = mongoose.model("Ponto", PontoSchema);

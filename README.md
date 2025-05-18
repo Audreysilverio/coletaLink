@@ -2,7 +2,7 @@
 
 **ColetaLink** é uma plataforma digital criada para facilitar o descarte consciente de resíduos sólidos, conectando moradores a pontos de coleta e catadores de forma prática, geolocalizada e responsiva.
 
-> 🌱 Projeto Integrador • Eixo Computação - Univesp 2025;  
+> 🌱 Projeto Integrador • Eixo Computação - Univesp 2025  
 > 💡 Foco em sustentabilidade, impacto social e tecnologia acessível.
 
 ---
@@ -63,7 +63,7 @@ npm run dev
 ```bash
 cd backend
 npm install
-node server.js
+npm run dev
 ```
 
 ---
@@ -85,10 +85,10 @@ PORT=5000
 
 ## 🌐 Deploy
 
-| Camada     | Plataforma                           |
-|------------|--------------------------------------|
-| Front-end  | [Vercel](https://coleta-link.vercel.app) |
-| Back-end   | [Render](https://coletalink-api.onrender.com)         |
+| Camada     | Plataforma                                   |
+|------------|----------------------------------------------|
+| Front-end  | [Vercel](https://coleta-link.vercel.app)     |
+| Back-end   | [Render](https://coletalink-api.onrender.com) |
 
 ---
 
