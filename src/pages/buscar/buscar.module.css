@@ -1,0 +1,145 @@
+:root {
+  --bg-light: #f7f9f9;
+  --text-dark: #222222;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --green-neon: #39ff14;
+  --green-hover: #2ee60f;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+}
+
+.buscarLocais {
+  padding: 2rem;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+  text-align: center;
+}
+
+.buscarLocais h1 {
+  font-size: 2.5rem;
+  color: var(--green-neon);
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.filtros input,
+.filtros select {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background-color: #ffffff;
+  color: var(--text-dark);
+  width: 220px;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px var(--shadow-light);
+}
+.filtros button {
+  padding: 0.7rem 1.5rem;
+  background-color: var(--green-neon);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  transition: all 0.2s;
+}
+.filtros button:hover {
+  background-color: var(--green-hover);
+  transform: scale(1.05);
+}
+
+.resultados {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-dark);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  padding: 1.5rem;
+  border: 1px solid var(--card-border);
+  max-width: 650px;
+  width: 100%;
+  text-align: left;
+  transition: transform 0.2s;
+}
+.card h2 {
+  color: var(--green-neon);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.card p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.nenhumResultado {
+  font-size: 1.2rem;
+  color: var(--green-neon);
+  border: 1px dashed var(--green-neon);
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.botaoMapa {
+  margin-top: 0.7rem;
+  display: inline-block;
+  background-color: var(--green-neon);
+  color: #000;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.botaoMapa:hover {
+  background-color: var(--green-hover);
+  transform: scale(1.05);
+}
+
+.loading {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--green-neon);
+  animation: pisca 1s infinite;
+}
+
+@keyframes pisca {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (max-width: 500px) {
+  .loading {
+    font-size: 1rem;
+    padding: 1.5rem 0.5rem;
+  }
+}/*# sourceMappingURL=buscar.module.css.map */

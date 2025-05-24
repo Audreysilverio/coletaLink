@@ -1,0 +1,71 @@
+.doarContainer {
+  padding: 4rem 2rem;
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f4f4;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.doarContainer h2 {
+  font-size: 2rem;
+  color: #39ff14;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.doarContainer p {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+.doarContainer .formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.doarContainer .formulario label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+.doarContainer .formulario label input, .doarContainer .formulario label select {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+}
+.doarContainer .formulario .cepBusca {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+.doarContainer .formulario .cepBusca input {
+  flex: 1;
+}
+.doarContainer .formulario .cepBusca button {
+  background-color: #39ff14;
+  color: #1e1e1e;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.doarContainer .formulario .cepBusca button:hover {
+  background-color: #2ce300;
+}
+.doarContainer .formulario .botaoEnviar {
+  margin-top: 2rem;
+  background-color: #39ff14;
+  color: #1e1e1e;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.doarContainer .formulario .botaoEnviar:hover {
+  background-color: #2ce300;
+}/*# sourceMappingURL=doar.module.css.map */

@@ -1,0 +1,123 @@
+.heroSection {
+  position: relative;
+  min-height: 80vh;
+  background: url("../../assets/recycle.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: #1f1f1f;
+}
+.heroSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+.heroSection .heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  color: #fff;
+}
+.heroSection .heroContent h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #39ff14;
+  margin-bottom: 1rem;
+}
+.heroSection .heroContent p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+}
+.heroSection .heroContent p strong {
+  color: #39ff14;
+}
+
+.porqueDoarSection {
+  background-color: #f4f4f4;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.porqueDoarSection h2 {
+  font-size: 2.2rem;
+  color: #1e1e1e;
+  margin-bottom: 1rem;
+}
+.porqueDoarSection p {
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.porqueDoarSection p strong {
+  color: #39ff14;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cardGrid .card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+.cardGrid .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.cardGrid .card svg {
+  color: #39ff14;
+  margin-bottom: 1rem;
+}
+.cardGrid .card h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.cardGrid .card p {
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: #39ff14;
+  color: #1e1e1e;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.ctaButton:hover {
+  background-color: #2ce300;
+}
+
+@media (max-width: 768px) {
+  .heroContent h2 {
+    font-size: 2rem;
+  }
+  .heroContent p {
+    font-size: 1rem;
+  }
+  .ctaButton {
+    font-size: 0.95rem;
+  }
+  .porqueDoarSection h2 {
+    font-size: 1.8rem;
+  }
+  .porqueDoarSection p {
+    font-size: 1rem;
+  }
+}/*# sourceMappingURL=inicio.module.css.map */

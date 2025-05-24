@@ -1,0 +1,110 @@
+.informacoes {
+  padding: 4rem 2rem;
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f4f4;
+  color: #1e1e1e;
+}
+.informacoes .cabecalho {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.informacoes .cabecalho h2 {
+  font-size: 2.5rem;
+  color: #39ff14;
+  margin-bottom: 1rem;
+}
+.informacoes .cabecalho p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+}
+.informacoes .beneficios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.informacoes .beneficios .card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.informacoes .beneficios .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.informacoes .beneficios .card svg {
+  color: #39ff14;
+  margin-bottom: 1rem;
+}
+.informacoes .beneficios .card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.informacoes .beneficios .card p {
+  font-size: 1rem;
+  color: #444;
+}
+.informacoes .legislacao {
+  max-width: 900px;
+  margin: 4rem auto 0;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+.informacoes .legislacao h3 {
+  color: #39ff14;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.informacoes .legislacao p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+.informacoes .legislacao p strong {
+  font-weight: 600;
+  color: #1e1e1e;
+}
+.informacoes .chamada {
+  text-align: center;
+  margin-top: 3rem;
+}
+.informacoes .chamada p {
+  font-size: 1.2rem;
+  color: #1e1e1e;
+  font-weight: 500;
+  text-align: center;
+}
+.informacoes .chamada p strong {
+  color: #39ff14;
+}
+
+@media (max-width: 768px) {
+  .cabecalho h2 {
+    font-size: 2rem;
+  }
+  .cabecalho p,
+  .chamada p,
+  .legislacao p {
+    font-size: 1rem;
+  }
+  .legislacao h3 {
+    font-size: 1.4rem;
+  }
+  .beneficios .card h3 {
+    font-size: 1.2rem;
+  }
+  .beneficios .card p {
+    font-size: 0.95rem;
+  }
+}/*# sourceMappingURL=informacoes.module.css.map */

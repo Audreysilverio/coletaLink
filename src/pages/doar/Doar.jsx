@@ -52,8 +52,12 @@ export default function Doar() {
     console.log('Formulário enviado:', form);
 
     try {
-      await axios.post("https://coletalink-api.onrender.com", form);
+      const url = "https://coletalink-api.onrender.com/pontos";
+      console.log("Enviando para:", url);
+
+      await axios.post(url, form);
       setMensagem('Solicitação enviada com sucesso!');
+
       setForm({
         nome: '',
         email: '',
@@ -69,7 +73,7 @@ export default function Doar() {
         site: '',
       });
     } catch (err) {
-      console.error(err);
+      console.error("Erro ao enviar:", err);
       setMensagem('Erro ao enviar. Tente novamente.');
     }
   };
