@@ -151,7 +151,7 @@ export default function Doar() {
             <option value="metal">Metal</option>
             <option value="vidro">Vidro</option>
             <option value="sofá">Sofá</option>
-            <option value="movéis">Movéis</option>
+            <option value="móveis">Móveis</option>
             <option value="eletrodoméstico">Eletrodoméstico</option>
             <option value="orgânico">Orgânico</option>
           </select>
